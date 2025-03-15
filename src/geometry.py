@@ -1,4 +1,5 @@
 from tkinter import Canvas
+type CellType = "Cell"
 
 class Point:
     def __init__(self, x: int, y: int):
@@ -49,4 +50,21 @@ class Cell:
 
         if self.has_bottom_wall:
             self._win.draw_line(self._bottom_wall, fill_color="black")
+
+    def draw_move(self, to_cell: CellType, undo=False):
+        line_color = "red"
+        if undo == True:
+            line_color = "gray"
+
+        x_start = self._x2 - (abs(self._x2 - self._x1)//2)
+        y_start = self._y2 - (abs(self._y2 - self._y1)//2)
+
+        end_x = to_cell._x2 - (abs(to_cell._x2 - to_cell._x1)//2)
+        end_y = to_cell._y2 - (abs(to_cell._y2 - to_cell._y1)//2)
+
+        start_pt = Point(x_start, y_start)
+        stop_pt = Point(end_x, end_y)
+
+        move_line = Line(start_pt, stop_pt)
+        self._win.draw_line(move_line, fill_color=line_color)
 

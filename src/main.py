@@ -3,17 +3,24 @@ from geometry import Point, Line, Cell
 
 def main():
     win = Window(800, 600)
-    #pt_a = Point(69, 420)
-    #pt_b = Point(420, 69)
-    #test_line = Line(pt_a, pt_b)
-    #win.draw_line(test_line, "black")
 
-    test_cell = Cell(x1=150, x2=200, y1=150, y2=200, win=win)
-    test_cell.has_left_wall = False
-    test_cell.has_right_wall = False
-    test_cell.has_top_wall = False
-    test_cell.has_bottom_wall = False
-    test_cell.draw()
+    top_left = Cell(x1=150, x2=200, y1=150, y2=200, win=win)
+    top_right = Cell(x1=350, x2=400, y1=150, y2=200, win=win)
+
+    bottom_right = Cell(x1=350, x2=400, y1=350, y2=400, win=win)
+    bottom_left = Cell(x1=150, x2=200, y1=350, y2=400, win=win)
+
+    top_left.draw()
+    bottom_left.draw()
+    top_right.draw()
+    bottom_right.draw()
+
+    bottom_left.draw_move(top_left, undo=True)
+    bottom_right.draw_move(bottom_left, undo=True)
+    bottom_right.draw_move(top_right, undo=True)
+    top_right.draw_move(top_left, undo=True)
+    bottom_right.draw_move(top_left, undo=True)
+    bottom_left.draw_move(top_right, undo=True)
 
     win.wait_for_close()
 
