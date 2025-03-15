@@ -1,26 +1,22 @@
 from screen import Window
-from geometry import Point, Line, Cell
+#from geometry import Point, Line, Cell
+from maze import Maze
 
 def main():
     win = Window(800, 600)
 
-    top_left = Cell(x1=150, x2=200, y1=150, y2=200, win=win)
-    top_right = Cell(x1=350, x2=400, y1=150, y2=200, win=win)
+    maz = Maze(
+            x1=10,
+            y1=10,
+            num_rows=10,
+            num_cols=10,
+            x_cell_size=50,
+            y_cell_size=50,
+            win=win,
+    )
 
-    bottom_right = Cell(x1=350, x2=400, y1=350, y2=400, win=win)
-    bottom_left = Cell(x1=150, x2=200, y1=350, y2=400, win=win)
-
-    top_left.draw()
-    bottom_left.draw()
-    top_right.draw()
-    bottom_right.draw()
-
-    bottom_left.draw_move(top_left, undo=True)
-    bottom_right.draw_move(bottom_left, undo=True)
-    bottom_right.draw_move(top_right, undo=True)
-    top_right.draw_move(top_left, undo=True)
-    bottom_right.draw_move(top_left, undo=True)
-    bottom_left.draw_move(top_right, undo=True)
+    maz._create_cells()
+    maz._draw_cells()
 
     win.wait_for_close()
 
