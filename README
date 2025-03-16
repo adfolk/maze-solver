@@ -1,0 +1,5 @@
+Current version is bare-bones. Probably not coming back to this one, but if I do, I will probably add the following features:
+- buttons to allow the user to choose the maze size, line colors, speed, etc
+- automatic resizing of the screen to fit the user-defined maze
+- ability for the user to solve the maze
+- ability for the user to race the algorithm
